@@ -47,7 +47,7 @@ fi
 echo "cd to $bin_abs_path for workaround relative path"
 cd "${bin_abs_path}" || exit
 
-nohup $JAVA ${JAVA_OPTS} ${AGENT_OPTS} -jar ${PROJECT_JAR_NAME} &
+nohup $JAVA ${JAVA_OPTS} ${AGENT_OPTS} -jar ${PROJECT_JAR_NAME} 1>>/dev/null 2>&1 &
 echo "nohup $JAVA ${JAVA_OPTS} ${JAVA_DEBUG_OPT} ${AGENT_OPTS} -jar ${PROJECT_JAR_NAME} 1>>/dev/null 2>&1 &"
 echo $! > "${base}/agent.pid"
 
