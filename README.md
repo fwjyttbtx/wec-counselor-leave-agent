@@ -1,6 +1,6 @@
-### 请假的代理工具
-使用`Gradle`命令打包  
-`.\gradlew distTar`  
+### 请假的代理工具  
+   使用`Gradle`命令打包  
+   `.\gradlew distTar`  
 
 ### 软件环境
 1. `Linux`发行版`x64`（推荐`Ubuntu 20.04`或`CentOS 8.5`）  
