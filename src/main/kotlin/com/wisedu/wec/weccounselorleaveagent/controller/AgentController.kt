@@ -6,6 +6,7 @@ import com.github.benmanes.caffeine.cache.LoadingCache
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.cio.*
+import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
@@ -46,6 +47,9 @@ class AgentController(
     private val client = HttpClient(CIO) {
         install(ContentNegotiation) {
             jackson()
+        }
+        install(HttpRequestRetry) {
+            maxRetries = 5
         }
         install(Logging) { level = LogLevel.INFO }
     }
