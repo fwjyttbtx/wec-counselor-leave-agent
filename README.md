@@ -12,6 +12,8 @@ agent.openapi.app-id = 162129959205702212
 agent.openapi.secret = rStA8NC3vYjjEKVSQyZDyv+xy+lih8YjeukHg8ncOIiUhoc3cki6EDYxRz9PBTp2R0TCEXm7wajAMKE0LrVO1osYbrr7dKnT
 # 获取openapi的区域openapi domain的智校云地址
 agent.openapi.domain-url = https://wecmpapi.wisedu.com/devopsConfig/getOpenApiDomain
+# 如果学校服务器8080端口被占用可以更改此端口号
+server.port=8080
 ```
 
 2. 启动  
