@@ -1,5 +1,5 @@
 ### 请假的代理工具
-使用Gradle命令打包  
+使用`Gradle`命令打包  
 `.\gradlew distTar`  
 
 ### 软件环境
@@ -34,25 +34,25 @@
 3. 查看启动日志  
 `tail -f /opt/logs/wec-counselor-leave-agent/wec-counselor-leave-agent.log`  
 日志输出如下信息则启动成功：  
-```log
-2022-05-19 12:46:09.323 [main] INFO  [org.apache.catalina.core.StandardService:173] : Starting service [Tomcat]
-2022-05-19 12:46:09.324 [main] INFO  [org.apache.catalina.core.StandardEngine:173] : Starting Servlet engine: [Apache Tomcat/9.0.62]
-2022-05-19 12:46:09.536 [main] INFO  [o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:173] : Initializing Spring embedded WebApplicationContext
-2022-05-19 12:46:09.537 [main] INFO  [o.s.b.w.s.context.ServletWebServerApplicationContext:290] : Root WebApplicationContext: initialization completed in 3442 ms
-2022-05-19 12:46:10.554 [main] INFO  [io.ktor.client.HttpClient:14] : REQUEST: https://wecmpapi.wisedu.com/devopsConfig/getOpenApiDomain
-METHOD: HttpMethod(value=POST)
-2022-05-19 12:46:11.552 [main] INFO  [io.ktor.client.HttpClient:14] : RESPONSE: 200 OK
-METHOD: HttpMethod(value=POST)
-FROM: https://wecmpapi.wisedu.com/devopsConfig/getOpenApiDomain
-2022-05-19 12:46:11.690 [main] INFO  [c.w.w.weccounselorleaveagent.controller.AgentController:72] : 获取请求区域的API域
-名信息：
-{
-  "domain" : "https://openapiv2.wisedu.com",
-  "errCode" : "0",
-  "errMsg" : "调用成功"
-}
-2022-05-19 12:46:12.728 [main] INFO  [o.s.boot.web.embedded.tomcat.TomcatWebServer:220] : Tomcat started on port(s): 8080 (http) with context path ''
-2022-05-19 12:46:12.753 [main] INFO  [c.w.w.w.WecCounselorLeaveAgentApplicationKt:61] : Started WecCounselorLeaveAgentApplicationKt in 8.15 seconds (JVM running for 9.412)
-```
+   ```log
+   2022-05-19 12:46:09.323 [main] INFO  [org.apache.catalina.core.StandardService:173] : Starting service [Tomcat]
+   2022-05-19 12:46:09.324 [main] INFO  [org.apache.catalina.core.StandardEngine:173] : Starting Servlet engine: [Apache Tomcat/9.0.62]
+   2022-05-19 12:46:09.536 [main] INFO  [o.a.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:173] : Initializing Spring embedded WebApplicationContext
+   2022-05-19 12:46:09.537 [main] INFO  [o.s.b.w.s.context.ServletWebServerApplicationContext:290] : Root WebApplicationContext: initialization completed in 3442 ms
+   2022-05-19 12:46:10.554 [main] INFO  [io.ktor.client.HttpClient:14] : REQUEST: https://wecmpapi.wisedu.com/devopsConfig/getOpenApiDomain
+   METHOD: HttpMethod(value=POST)
+   2022-05-19 12:46:11.552 [main] INFO  [io.ktor.client.HttpClient:14] : RESPONSE: 200 OK
+   METHOD: HttpMethod(value=POST)
+   FROM: https://wecmpapi.wisedu.com/devopsConfig/getOpenApiDomain
+   2022-05-19 12:46:11.690 [main] INFO  [c.w.w.weccounselorleaveagent.controller.AgentController:72] : 获取请求区域的API域
+   名信息：
+   {
+     "domain" : "https://openapiv2.wisedu.com",
+     "errCode" : "0",
+     "errMsg" : "调用成功"
+   }
+   2022-05-19 12:46:12.728 [main] INFO  [o.s.boot.web.embedded.tomcat.TomcatWebServer:220] : Tomcat started on port(s): 8080 (http) with context path ''
+   2022-05-19 12:46:12.753 [main] INFO  [c.w.w.w.WecCounselorLeaveAgentApplicationKt:61] : Started WecCounselorLeaveAgentApplicationKt in 8.15 seconds (JVM running for 9.412)
+   ```
 
 
