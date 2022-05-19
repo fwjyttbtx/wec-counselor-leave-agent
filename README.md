@@ -1,24 +1,31 @@
-### 请假的代理工具  
+### 请假的代理工具
+使用Gradle命令打包  
+`.\gradlew distTar`  
 
-1. 解压`tar.gz`到**指定目录**
+### 软件环境
+1. `Linux`发行版`x64`（推荐`Ubuntu 20.04`或`CentOS 8.5`）  
+2. `Java8`运行时环境，即`jre`  
+
+### 部署说明  
+1. 解压`tar.gz`到**指定目录**  
 `tar -zxvf wec-counselor-leave-agent.tar.gz -C /opt`  
-2. `cd`到agent的目录
+2. `cd`到agent的目录  
 `cd /opt/leave-agent`  
-3. 配置信息   
+3. 配置信息  
 配置信息位于`/opt/leave-agent/application.properties`  
 配置内容如下：  
-```properties
-# 申请open-api的学校code一般为国标的学校代码
-agent.openapi.school-code = 20180611
-# 申请的openapi的appid
-agent.openapi.app-id = 162129959205702212
-# 申请的openapi的secret
-agent.openapi.secret = rStA8NC3vYjjEKVSQyZDyv+xy+lih8YjeukHg8ncOIiUhoc3cki6EDYxRz9PBTp2R0TCEXm7wajAMKE0LrVO1osYbrr7dKnT
-# 获取openapi的区域openapi domain的智校云地址
-agent.openapi.domain-url = https://wecmpapi.wisedu.com/devopsConfig/getOpenApiDomain
-# 如果学校服务器8080端口被占用可以更改此端口号
-server.port=8080
-```
+    ```properties
+    # 申请open-api的学校code一般为国标的学校代码
+    agent.openapi.school-code = 20180611
+    # 申请的openapi的appid
+    agent.openapi.app-id = 162129959205702212
+    # 申请的openapi的secret
+    agent.openapi.secret = rStA8NC3vYjjEKVSQyZDyv+xy+lih8YjeukHg8ncOIiUhoc3cki6EDYxRz9PBTp2R0TCEXm7wajAMKE0LrVO1osYbrr7dKnT
+    # 获取openapi的区域openapi domain的智校云地址
+    agent.openapi.domain-url = https://wecmpapi.wisedu.com/devopsConfig/getOpenApiDomain
+    # 如果学校服务器8080端口被占用可以更改此端口号
+    server.port=8080
+    ```
 
 2. 启动  
 启动脚本    
