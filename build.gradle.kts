@@ -56,7 +56,9 @@ distributions {
             from("build/libs") {
                 exclude("*-plain.jar")
             }
-            from("src/main/bin")
+            from("src/main/bin") {
+                fileMode = 755
+            }
             from("README.md")
             into("/leave-agent")
 
