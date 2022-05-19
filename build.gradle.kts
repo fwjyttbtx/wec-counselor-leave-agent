@@ -8,6 +8,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
+    distribution
 }
 
 group = "com.wisedu.wec"
@@ -46,4 +47,30 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+distributions {
+    main {
+        contents {
+
+            from("build/libs") {
+                exclude("*-plain.jar")
+            }
+            from("src/main/bin")
+            from("README.md")
+            into("/leave-agent")
+
+            from("/src/main/resources") {
+                into("/leave-agent/conf")
+            }
+
+        }
+    }
+}
+
+tasks.withType<Tar> {
+    dependsOn("bootJar")
+    compression = Compression.GZIP
+    archiveExtension.set("tar.gz")
+    archiveFileName.set("${project.name}.tar.gz")
 }
