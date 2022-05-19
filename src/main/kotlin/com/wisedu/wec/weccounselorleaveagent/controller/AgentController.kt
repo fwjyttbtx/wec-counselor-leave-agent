@@ -14,6 +14,7 @@ import io.ktor.serialization.jackson.*
 import kotlinx.coroutines.runBlocking
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -26,14 +27,18 @@ import java.time.Duration
  * @author wjfu@wisedu.com
  */
 @RestController
-class AgentController {
+class AgentController(
+    @Value("\${agent.openapi.school-code:20180611}")
+    private val schoolCode: String,
+    @Value("\${agent.openapi.app-id:162129959205702212}")
+    private val appId: String,
+    @Value("\${agent.openapi.secret:rStA8NC3vYjjEKVSQyZDyv+xy+lih8YjeukHg8ncOIiUhoc3cki6EDYxRz9PBTp2R0TCEXm7wajAMKE0LrVO1osYbrr7dKnT}")
+    private val secret: String,
+    @Value("\${agent.openapi.domain-url:https://wecmpapi.wisedu.com/devopsConfig/getOpenApiDomain}")
+    private val openapiDomainUrl: String
+) {
 
     private val logger: Logger = LoggerFactory.getLogger(javaClass)
-
-    private val schoolCode = "20180611"
-    private val appId = "162129959205702212"
-    private val secret = "rStA8NC3vYjjEKVSQyZDyv+xy+lih8YjeukHg8ncOIiUhoc3cki6EDYxRz9PBTp2R0TCEXm7wajAMKE0LrVO1osYbrr7dKnT"
-    private val openapiDomainUrl = "https://wecmpapi.wisedu.com/devopsConfig/getOpenApiDomain"
 
     /**
      * http的请求客户端
