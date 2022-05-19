@@ -73,6 +73,5 @@ distributions {
 tasks.withType<Tar> {
     dependsOn("bootJar")
     compression = Compression.GZIP
-    archiveExtension.set("tar.gz")
     archiveFileName.set("${project.name}.tar.gz")
 }
