@@ -22,7 +22,7 @@ server.port=8080
 
 2. 启动  
 启动脚本    
-`bash start.sh`  
+`./start.sh`  
 
 3. 查看启动日志  
 `tail -f /opt/logs/wec-counselor-leave-agent/wec-counselor-leave-agent.log`  
