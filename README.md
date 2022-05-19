@@ -9,10 +9,10 @@
 ### 部署说明  
 1. 解压`tar.gz`到**指定目录**  
 `tar -zxvf wec-counselor-leave-agent.tar.gz -C /opt`  
-2. `cd`到agent的目录  
+2. `cd`到`agent`的目录  
 `cd /opt/leave-agent`  
 3. 配置信息  
-配置信息位于`/opt/leave-agent/application.properties`  
+配置信息位于`/opt/leave-agent/conf/application.properties`  
 配置内容如下：  
     ```properties
     # 申请open-api的学校code一般为国标的学校代码
