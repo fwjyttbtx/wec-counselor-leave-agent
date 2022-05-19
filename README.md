@@ -1,8 +1,12 @@
 ### 请假的代理工具  
 
-1. 配置信息  
-默认为测试配置信息，如果需要加载外部配置启动参数添加`-Dspring.config.location=${dir}`其中`${dir}`替换为实际配置文件的位置  
-配置文件名固定为`application.properties`配置内容如下  
+1. 解压`tar.gz`到**指定目录**
+`tar -zxvf wec-counselor-leave-agent.tar.gz -C /opt`  
+2. `cd`到agent的目录
+`cd /opt/leave-agent`  
+3. 配置信息   
+配置信息位于`/opt/leave-agent/application.properties`  
+配置内容如下：  
 ```properties
 # 申请open-api的学校code一般为国标的学校代码
 agent.openapi.school-code = 20180611
@@ -17,7 +21,8 @@ server.port=8080
 ```
 
 2. 启动  
-启动脚本`nohup java -jar -Dspring.config.location=${dir} -server -Xms2048m -Xmx2048m wec-counselor-leave-agent-1.0.0.jar 1>>/dev/null 2>&1 &`  
+启动脚本    
+`bash start.sh`  
 
 3. 查看启动日志  
 `tail -f /opt/logs/wec-counselor-leave-agent/wec-counselor-leave-agent.log`  
