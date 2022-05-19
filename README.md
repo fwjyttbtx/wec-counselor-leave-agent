@@ -1,6 +1,6 @@
 ### 请假的代理工具  
-   使用`Gradle`命令打包  
-   `.\gradlew distTar`  
+使用`Gradle`命令打包  
+`.\gradlew distTar`  
 
 ### 软件环境
 1. `Linux`发行版`x64`（推荐`Ubuntu 20.04`或`CentOS 8.5`）  
@@ -27,11 +27,14 @@
     server.port=8080
     ```
 
-2. 启动  
-启动脚本    
-`./start.sh`  
+4. 启动  
+启动脚本`./start.sh`  
+如果启动有报错或者`java`的进程没有拉起, 则需要先执行一下停止服务的脚本`./stop.sh`再重新执行`./start.sh`脚本  
 
-3. 查看启动日志  
+5. 停止  
+执行脚本`./stop.sh`  
+
+6. 查看启动日志  
 `tail -f /opt/logs/wec-counselor-leave-agent/wec-counselor-leave-agent.log`  
 日志输出如下信息则启动成功：  
    ```log
