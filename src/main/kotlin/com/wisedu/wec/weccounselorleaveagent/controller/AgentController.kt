@@ -45,11 +45,16 @@ class AgentController(
      * http的请求客户端
      */
     private val client = HttpClient(CIO) {
+        engine {
+            requestTimeout = 3000
+            endpoint {
+                pipelineMaxSize = 20
+                maxConnectionsPerRoute = 100
+                connectAttempts = 3
+            }
+        }
         install(ContentNegotiation) {
             jackson()
-        }
-        install(HttpRequestRetry) {
-            maxRetries = 5
         }
         install(Logging) { level = LogLevel.INFO }
     }
@@ -117,21 +122,26 @@ class AgentController(
      */
     @PostMapping("/")
     fun report(@RequestBody report: ObjectNode) = runBlocking {
-        var retObject = proxy2Openapi(report)
-        // 如果响应失效需要重新获取一次accessToken再做请求
-        if (retObject.has("errCode")) {
-            logger.error("请求失败：\n${retObject.toPrettyString()}")
-            if (retObject["errCode"].asText() == "4105040001") {
-                // 刷新accessToken重试 如果还不行则认为有网络问题或其他的问题
-                tokenCache.refresh(appId)
-                retObject = proxy2Openapi(report)
-                if (retObject.has("errCode") && retObject["errCode"].asText() != "0") {
-                    logger.error("获取服务器鉴权信息失败：\n${retObject.toPrettyString()}")
-                    return@runBlocking mapOf<String, Any>(Pair("code", 4))
+        try {
+            var retObject = proxy2Openapi(report)
+            // 如果响应失效需要重新获取一次accessToken再做请求
+            if (retObject.has("errCode")) {
+                logger.error("请求失败：\n${retObject.toPrettyString()}")
+                if (retObject["errCode"].asText() == "4105040001") {
+                    // 刷新accessToken重试 如果还不行则认为有网络问题或其他的问题
+                    tokenCache.refresh(appId)
+                    retObject = proxy2Openapi(report)
+                    if (retObject.has("errCode") && retObject["errCode"].asText() != "0") {
+                        logger.error("获取服务器鉴权信息失败：\n${retObject.toPrettyString()}")
+                        return@runBlocking mapOf<String, Any>(Pair("code", 4))
+                    }
                 }
             }
+            return@runBlocking retObject
+        } catch (e: Exception) {
+            logger.error("请求服务异常：" + e.message)
+            return@runBlocking mapOf<String, Any>(Pair("code", 1))
         }
-        return@runBlocking retObject
     }
 
     /**
