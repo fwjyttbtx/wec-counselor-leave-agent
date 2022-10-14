@@ -139,7 +139,7 @@ class AgentController(
             }
             return@runBlocking retObject
         } catch (e: Exception) {
-            logger.error("请求服务异常：" + e.message)
+            logger.error("请求服务异常：" + e.message, e)
             return@runBlocking mapOf<String, Any>(Pair("code", 1))
         }
     }
