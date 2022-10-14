@@ -5,10 +5,8 @@ import com.github.benmanes.caffeine.cache.Caffeine
 import com.github.benmanes.caffeine.cache.LoadingCache
 import io.ktor.client.*
 import io.ktor.client.call.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.plugins.*
+import io.ktor.client.engine.okhttp.*
 import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.jackson.*
@@ -44,19 +42,18 @@ class AgentController(
     /**
      * http的请求客户端
      */
-    private val client = HttpClient(CIO) {
+    private val client = HttpClient(OkHttp) {
         engine {
-            requestTimeout = 3000
-            endpoint {
-                pipelineMaxSize = 20
-                maxConnectionsPerRoute = 100
-                connectAttempts = 3
+            pipelining = true
+            clientCacheSize = 50
+            threadsCount = 100
+            config {
+                connectTimeout(Duration.ofSeconds(3))
             }
         }
         install(ContentNegotiation) {
             jackson()
         }
-        install(Logging) { level = LogLevel.NONE }
     }
 
     /**
