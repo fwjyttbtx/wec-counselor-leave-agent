@@ -56,7 +56,7 @@ class AgentController(
         install(ContentNegotiation) {
             jackson()
         }
-        install(Logging) { level = LogLevel.INFO }
+        install(Logging) { level = LogLevel.BODY }
     }
 
     /**
@@ -123,6 +123,14 @@ class AgentController(
     @PostMapping("/")
     fun report(@RequestBody report: ObjectNode) = runBlocking {
         try {
+            val personId = report["person_id"]?.asText()
+            val personName = report["person_name"]?.asText()
+            val personCode = report["person_code"]?.asText()
+            logger.info("获取用户【id=$personId,name=$personName,code=$personCode】的鉴权信息。")
+            // 如果personCode为空则直接走例外放行
+            if (personCode.isNullOrBlank()) {
+                return@runBlocking mapOf<String, Any>(Pair("code", 1))
+            }
             var retObject = proxy2Openapi(report)
             // 如果响应失效需要重新获取一次accessToken再做请求
             if (retObject.has("errCode")) {
