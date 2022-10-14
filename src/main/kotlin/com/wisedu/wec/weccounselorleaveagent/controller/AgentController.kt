@@ -56,7 +56,7 @@ class AgentController(
         install(ContentNegotiation) {
             jackson()
         }
-        install(Logging) { level = LogLevel.BODY }
+        install(Logging) { level = LogLevel.NONE }
     }
 
     /**
